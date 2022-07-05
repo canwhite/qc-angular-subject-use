@@ -1,0 +1,10 @@
+
+<div class="app">
+    <p>heroes works!</p>
+    <p>----------------son start--------------------</p>
+    <p> <app-heroes-component [comSubject]="comSubject" [rcomSubject] ="rcomSubject"></app-heroes-component></p>
+    <p>----------------son end----------------------</p>
+    <p>子类传过来的值:{{test}}</p>
+    <p> <button (click)="sendData()">父传子</button> </p>
+    <p><button (click)="gotoDetails('1')">跳转到详情</button></p>
+</div>
