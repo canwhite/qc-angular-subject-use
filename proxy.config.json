@@ -1,7 +1,0 @@
-{
-    "/api": {
-        "target": "http://47.105.66.156:81/api/",
-        "secure": false,
-        "pathRewrite": {"^/api": ""}
-    }
-  }

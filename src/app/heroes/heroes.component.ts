@@ -2,6 +2,7 @@ import { Component, OnInit,AfterViewInit,OnDestroy} from '@angular/core';
 import  { Router } from '@angular/router';
 import {BehaviorSubject,Subscription} from "rxjs";
 import {map,pluck,skipWhile} from "rxjs/operators"
+import {HeroService} from "../service/hero.service"
 
 @Component({
   selector: 'app-heroes',
@@ -15,23 +16,24 @@ export class HeroesComponent implements OnInit {
   test = "";
   subs:Subscription[] = [];
 
-  constructor(private router:Router) { }
-
+  constructor(private router:Router,private heroService:HeroService) {}
   ngOnInit(): void {
     const sub :Subscription =  this.rcomSubject.pipe(skipWhile(val=>val===null)).subscribe((res:any)=>{
-      console.log("---res---",res);
       this.test = res;
     })
     this.subs?.push(sub)
+
   }
   //虚节点已经转化为实节点
-  AfterViewInit():void{
+  ngAfterViewInit():void{
     //在这里传一个值
+    this.heroService.getLyric().subscribe(res=>{
+      console.log("--res--",res);
+    })
   }
 
-
   //销毁时候
-  OnDestroy():void{
+  ngOnDestroy():void{
     this.subs?.forEach((item:any)=>{
       item?.unsubscribe();
     })
