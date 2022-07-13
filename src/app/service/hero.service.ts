@@ -19,6 +19,7 @@ export class HeroService {
   /** 发起一个post请求 */
   getLyric(){
     return this.http.post<any>(this.REQUEST_URL,{city:"郑州"},this.httpOptions).pipe(
+      //tap和catch一个用于查看结构，一个用于捕获error
       tap(res =>console.log(res)),
       catchError(this.handleError<any>('dlyric'))
     );
